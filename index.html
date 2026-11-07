@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#F5F3F4">
 <title>벚꽃 체중</title>
 <meta name="description" content="매일 아침 체중을 기록하면 목표에 가까워질수록 빈 땅의 씨앗이 벚나무로 자라고, 목표에 닿으면 꽃이 활짝 펴요.">
@@ -47,10 +47,13 @@
   --leaf:#7DBB74; --sakura-deep:#E57D9C;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0}
+html,body{margin:0;overflow-x:hidden;scrollbar-width:none;-ms-overflow-style:none;touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html::-webkit-scrollbar,body::-webkit-scrollbar,.sheet::-webkit-scrollbar{display:none;width:0;height:0}
+.sheet{scrollbar-width:none}
 body{background:var(--outside);color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
   font-size:15px;line-height:1.45;letter-spacing:-.012em;-webkit-font-smoothing:antialiased}
 button,input{font:inherit;color:inherit;letter-spacing:inherit}
+input,select,textarea{font-size:16px}
 button{cursor:pointer;background:none;border:0;padding:0}
 :focus-visible{outline:2px solid var(--sakura-deep);outline-offset:2px;border-radius:6px}
 .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
@@ -1304,6 +1307,13 @@ $('#ob-form').onsubmit=e=>{
   S.records=[{date:todayStr(),w:r1(s),mood:'',memo:''}];
   save();tab='home';render();toast('씨앗을 심었어요');
 };
+
+// 핀치·두 번 탭·Ctrl+휠 확대 막기
+['gesturestart','gesturechange','gestureend'].forEach(ev=>document.addEventListener(ev,e=>e.preventDefault(),{passive:false}));
+document.addEventListener('touchmove',e=>{if(e.touches.length>1)e.preventDefault()},{passive:false});
+let lastTouch=0;document.addEventListener('touchend',e=>{const n=Date.now();if(n-lastTouch<300&&!e.target.closest('input,textarea'))e.preventDefault();lastTouch=n},{passive:false});
+document.addEventListener('wheel',e=>{if(e.ctrlKey)e.preventDefault()},{passive:false});
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&['+','-','=','0'].includes(e.key))e.preventDefault()});
 
 render();
 fetchWx();
