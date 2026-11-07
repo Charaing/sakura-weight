@@ -5,6 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#F5F3F4">
 <title>벚꽃 체중</title>
+<meta name="description" content="매일 아침 체중을 기록하면 목표에 가까워질수록 빈 땅의 씨앗이 벚나무로 자라고, 목표에 닿으면 꽃이 활짝 펴요.">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="벚꽃 체중">
+<meta property="og:type" content="website">
+<meta property="og:title" content="벚꽃 체중">
+<meta property="og:description" content="매일 아침 체중을 기록하면 목표에 가까워질수록 벚나무가 자라요.">
+<meta property="og:url" content="https://charaing.github.io/sakura-weight/">
+<meta property="og:image" content="https://charaing.github.io/sakura-weight/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{
@@ -48,6 +64,16 @@ button{cursor:pointer;background:none;border:0;padding:0}
 .scene-top{position:absolute;inset:0 0 auto 0;display:flex;justify-content:space-between;align-items:flex-start;padding:calc(env(safe-area-inset-top) + 18px) 20px 0;color:#2B2326}
 .scene-wrap.night .scene-top{color:#F4EEF2}
 .greet{font-size:20px;font-weight:700;letter-spacing:-.025em}
+.meta-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;font-size:12.5px;font-weight:600}
+.meta-row span{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.scene-wrap.night .meta-row span{background:rgba(255,255,255,.14)}
+.meta-row svg{width:15px;height:15px}
+.rain{animation:rain .75s linear infinite}
+@keyframes rain{0%{transform:translate(0,-36px);opacity:0}20%,80%{opacity:1}100%{transform:translate(-9px,36px);opacity:0}}
+.snow{animation:snow linear infinite}
+@keyframes snow{0%{transform:translate(0,-28px);opacity:0}20%,80%{opacity:1}100%{transform:translate(9px,28px);opacity:0}}
+.limit{text-align:center;font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.badge{cursor:pointer}
 .today-date{font-size:13px;opacity:.72;margin-top:2px}
 .icon-btn{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .scene-wrap.night .icon-btn{background:rgba(255,255,255,.14)}
@@ -226,7 +252,7 @@ button{cursor:pointer;background:none;border:0;padding:0}
 .toast{position:fixed;left:50%;bottom:calc(var(--tab-h) + env(safe-area-inset-bottom) + 14px);transform:translate(-50%,12px);background:var(--ink);color:var(--surface);padding:11px 18px;border-radius:999px;font-size:14px;font-weight:550;opacity:0;transition:.25s;z-index:60;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 @media (prefers-reduced-motion: reduce){
-  .sway,.fall,.twinkle,.shake{animation:none}
+  .sway,.fall,.twinkle,.shake,.rain,.snow{animation:none}
   .sheet,.sheet-dim,.toast{transition:none}
   .modal-card{animation:none}
 }
@@ -293,7 +319,7 @@ button{cursor:pointer;background:none;border:0;padding:0}
     <div class="scene-wrap" id="home-scene-wrap">
       <div id="home-scene"></div>
       <div class="scene-top">
-        <div><div class="greet" id="greet"></div><div class="today-date" id="todayDate"></div></div>
+        <div><div class="greet" id="greet"></div><div class="today-date" id="todayDate"></div><div class="meta-row" id="metaRow"></div></div>
         <button class="icon-btn" data-open="settings" aria-label="설정"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
       </div>
     </div>
@@ -346,7 +372,7 @@ button{cursor:pointer;background:none;border:0;padding:0}
       <div class="page-head"><h1 class="large-title">정원</h1></div>
       <p class="garden-sum" id="gardenSum"></p>
       <div class="garden-grid" id="gardenGrid"></div>
-      <div class="group-title">배지</div>
+      <div class="group-title" id="badgeTitle">배지</div>
       <div class="badges" id="badges"></div>
     </div>
   </section>
@@ -387,7 +413,11 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 /* ================= 날짜 · 숫자 ================= */
 const pad=n=>String(n).padStart(2,'0');
 const ds=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-function todayStr(){return ds(new Date())}
+const TZ='Asia/Seoul';
+function seoulParts(){const o={};new Intl.DateTimeFormat('en-US',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date()).forEach(x=>o[x.type]=x.value);return o}
+function todayStr(){const o=seoulParts();return `${o.year}-${o.month}-${o.day}`}
+const seoulHour=()=>(+seoulParts().hour)%24;
+const clockText=()=>new Intl.DateTimeFormat('ko-KR',{timeZone:TZ,hour:'numeric',minute:'2-digit'}).format(new Date());
 const parse=s=>{const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
 const addDays=(s,n)=>{const d=parse(s);d.setDate(d.getDate()+n);return ds(d)};
 const diffDays=(a,b)=>Math.round((parse(b)-parse(a))/864e5);
@@ -668,10 +698,60 @@ function skyFor(hour){
 }
 
 const BASE_Y=332;
+/* 서울 날씨 (Open-Meteo, 키 없이 사용) */
+let WX=null;
+try{const c=JSON.parse(localStorage.getItem('sakura-wx'));if(c&&Date.now()-c.t<6*36e5)WX=c}catch(e){}
+function wxInfo(c){
+  if(c===0)return['clear','맑음'];if(c<=2)return['partly','구름 조금'];if(c===3)return['cloudy','흐림'];
+  if(c===45||c===48)return['fog','안개'];if(c>=51&&c<=57)return['rain','이슬비'];if(c>=61&&c<=67||c>=80&&c<=82)return['rain','비'];
+  if(c>=71&&c<=77||c===85||c===86)return['snow','눈'];if(c>=95)return['storm','뇌우'];return['cloudy','흐림'];
+}
+const wxKind=()=>WX?wxInfo(WX.code)[0]:null;
+function wxIcon(k,night){
+  const sun=night?'<path d="M15.5 3.5a7.5 7.5 0 1 0 5 12.6A8.5 8.5 0 0 1 15.5 3.5z" fill="currentColor"/>':'<circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>';
+  const cloud='<path d="M7 18.5h10.2a4 4 0 0 0 .4-8 5.6 5.6 0 0 0-10.8 1.5A3.3 3.3 0 0 0 7 18.5z" fill="currentColor"/>';
+  const rainCloud='<path d="M7 15h10.2a4 4 0 0 0 .4-8 5.6 5.6 0 0 0-10.8 1.5A3.3 3.3 0 0 0 7 15z" fill="currentColor"/>';
+  const m={clear:sun,partly:'<g opacity=".7">'+sun+'</g>'+cloud,cloudy:cloud,fog:cloud+'<path d="M4 21h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
+    rain:rainCloud+'<path d="M8 18l-1 2.5M12 18l-1 2.5M16 18l-1 2.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>',
+    snow:rainCloud+'<circle cx="8" cy="19.5" r="1.2" fill="currentColor"/><circle cx="12" cy="21" r="1.2" fill="currentColor"/><circle cx="16" cy="19.5" r="1.2" fill="currentColor"/>',
+    storm:rainCloud+'<path d="M12.5 15.5l-2 3.5h3l-2 3.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/>'};
+  return `<svg viewBox="0 0 24 24" aria-hidden="true">${m[k]||cloud}</svg>`;
+}
+async function fetchWx(force){
+  if(!force&&WX&&Date.now()-WX.t<15*6e4)return;
+  try{
+    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.978&current=temperature_2m,weather_code&timezone=Asia%2FSeoul');
+    const d=await r.json();if(!d.current)return;
+    WX={t:Date.now(),temp:d.current.temperature_2m,code:d.current.weather_code};
+    try{localStorage.setItem('sakura-wx',JSON.stringify(WX))}catch(e){}
+    if(S&&tab==='home'&&!animating){renderMeta();renderScene(P())}
+  }catch(e){}
+}
+function weatherSky(sk){
+  const k=wxKind();if(!k||k==='clear')return'';
+  const night=sk.k==='night';let s='';
+  if(k!=='partly')s+=`<rect width="360" height="330" fill="${night?'#151a30':'#8994A3'}" opacity="${k==='fog'?.22:.36}"/>`;
+  const list=k==='partly'?[[58,72,1],[250,156,.8]]:[[40,62,1.3],[150,40,1.1],[272,84,1.4],[92,142,1],[302,172,.9],[204,122,1.2]];
+  const col=k==='partly'?(night?'#454A6A':'#FFFFFF'):(night?'#363B58':'#D5DAE1');
+  list.forEach(([x,y,c])=>s+=`<g transform="translate(${x} ${y}) scale(${c})" fill="${col}" opacity=".88"><ellipse rx="34" ry="11"/><ellipse cx="-12" cy="-7" rx="16" ry="11"/><ellipse cx="10" cy="-9" rx="19" ry="13"/></g>`);
+  return s;
+}
+function weatherFront(sk){
+  const k=wxKind();if(!k)return'';
+  const r=rng(99);let s='';
+  if(k==='fog')s+=`<rect y="170" width="360" height="230" fill="#fff" opacity=".26"/>`;
+  if(k==='rain'||k==='storm'){
+    s+=`<g stroke="${sk.k==='night'?'#9AA6C8':'#71849E'}" stroke-width="1" stroke-linecap="round" opacity=".55">`;
+    for(let i=0;i<(k==='storm'?90:65);i++){const x=r()*380-10,y=r()*400;s+=`<line class="${RM?'':'rain'}" x1="${f1(x)}" y1="${f1(y)}" x2="${f1(x-3)}" y2="${f1(y+12)}" style="animation-delay:${f1(-r())}s"/>`}
+    s+='</g>';
+  }
+  if(k==='snow')for(let i=0;i<60;i++){const x=r()*360,y=r()*400;s+=`<circle class="${RM?'':'snow'}" cx="${f1(x)}" cy="${f1(y)}" r="${f1(1+r()*1.6)}" fill="#fff" opacity=".9" style="animation-delay:${f1(-r()*6)}s;animation-duration:${f1(4+r()*4)}s"/>`}
+  return s;
+}
 // 작을 때는 카메라가 가까이 다가가고, 나무가 자라면 물러남
 const zoomFor=p=>p<=SEEDLING_END?3.1:lerp(3.1,1,Math.pow((p-SEEDLING_END)/(.15-SEEDLING_END),.8));
 function sceneSVG(p,seed,opt={}){
-  const hour=new Date().getHours(),sk=skyFor(hour),id='s'+Math.random().toString(36).slice(2,7),T=buildTree(seed);
+  const hour=seoulHour(),sk=skyFor(hour),id='s'+Math.random().toString(36).slice(2,7),T=buildTree(seed);
   let s=`<svg class="scene" viewBox="0 0 360 400" role="img" aria-label="벚꽃나무, 진행률 ${Math.round(p*100)}%">
   <defs><linearGradient id="${id}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${sk.top}"/><stop offset="1" stop-color="${sk.bot}"/></linearGradient></defs>
   <rect width="360" height="400" fill="url(#${id})"/>`;
@@ -685,6 +765,7 @@ function sceneSVG(p,seed,opt={}){
   }else{
     s+=`<circle cx="${sk.k==='dawn'?84:286}" cy="${sk.k==='dawn'?246:232}" r="26" fill="#FFE3C7" opacity=".9"/>`;
   }
+  if(opt.weather!==false)s+=weatherSky(sk);
   s+=`<path d="M0 250C60 228 110 226 160 238S270 226 360 240V400H0Z" fill="${sk.hill2}"/>
   <path d="M0 282C70 262 130 274 190 268S300 254 360 270V400H0Z" fill="${sk.hill}"/>
   <path d="M0 314Q180 298 360 314V400H0Z" fill="${sk.ground}"/>`;
@@ -697,6 +778,7 @@ function sceneSVG(p,seed,opt={}){
     if(p>=1)for(let i=0;i<16;i++){const x=40+r()*280,y=60+r()*160;s+=`<use href="#petal" class="fall" fill="${['#F8C7D4','#FBD9E2','#F4B2C4'][i%3]}" transform="translate(${f1(x)} ${f1(y)}) scale(.55)" style="--dx:${f1((r()-.25)*90)}px;animation-duration:${f1(5+r()*5)}s;animation-delay:${f1(-r()*9)}s"/>`}
     else if(p>.15&&p<.22)for(let i=0;i<9;i++){const x=90+r()*180,y=110+r()*120;s+=`<use href="#leaf" class="fall" fill="${['#E2A93B','#D7782F','#C44A3A'][i%3]}" transform="translate(${f1(x)} ${f1(y)}) scale(.4)" style="--dx:${f1((r()-.3)*70)}px;animation-duration:${f1(4+r()*3)}s;animation-delay:${f1(-r()*6)}s"/>`}
   }
+  if(opt.weather!==false)s+=weatherFront(sk);
   s+=`<g id="${opt.burstId||''}"></g></svg>`;
   return{svg:s,night:sk.k==='night'};
 }
@@ -767,9 +849,10 @@ function renderStage(p){
 }
 
 function renderHome(){
-  const h=new Date().getHours();
+  const h=seoulHour();
   $('#greet').textContent=h>=5&&h<11?'좋은 아침이에요':h<17&&h>=11?'좋은 오후예요':h>=17&&h<22?'좋은 저녁이에요':'편안한 밤 보내세요';
   $('#todayDate').textContent=fmtFull(todayStr());
+  renderMeta();
   const p=P();
   if(!animating){renderScene(p);renderStage(p)}
   const st=stats(),todayRec=S.records.find(r=>r.date===todayStr());
@@ -792,6 +875,22 @@ function renderHome(){
   const action=realP()>=1?`<button class="link-btn" style="padding:0;margin-top:6px" data-act="plant">정원에 남기고 새로 시작</button>`:'';
   $('#insight').innerHTML=`<div class="insight"><svg width="16" height="16" viewBox="0 0 16 16"><use href="#petal" fill="#E07A98" transform="translate(8 9.5) scale(.9)"/><use href="#petal" fill="#EE9AB2" transform="translate(8 9.5) rotate(72) scale(.9)"/><use href="#petal" fill="#E88AA5" transform="translate(8 9.5) rotate(-72) scale(.9)"/></svg><div>${msg}${action?'<br>'+action:''}</div></div>`;
 }
+
+function renderMeta(){
+  const el=$('#metaRow');if(!el)return;
+  const night=skyFor(seoulHour()).k==='night';
+  let h=`<span class="num">${clockText()}</span>`;
+  if(WX){const[k,l]=wxInfo(WX.code);h+=`<span class="num">${wxIcon(k,night)}서울 ${Math.round(WX.temp)}° ${l}</span>`}
+  el.innerHTML=h;
+}
+let lastHour=null;
+setInterval(()=>{
+  if(!S||tab!=='home')return;
+  const h=seoulHour();
+  if(lastHour!==null&&h!==lastHour&&!animating)renderHome();else renderMeta();
+  lastHour=h;
+},20000);
+setInterval(()=>fetchWx(),15*6e4);
 
 /* ---------- 기록 탭 ---------- */
 function renderLog(){
@@ -906,19 +1005,52 @@ function drawChart(st){
 }
 
 /* ---------- 정원 탭 ---------- */
+const ICON={
+  sun:'<circle cx="12" cy="13" r="4" fill="currentColor"/><path d="M12 4v2M12 20v1M4 13H3M21 13h-1M6.3 7.3l1.4 1.4M16.3 8.7l1.4-1.4M3 20h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  pen:'<path d="M5 19l1-4 9.5-9.5a2.1 2.1 0 0 1 3 3L9 18zM14 7l3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  back:'<path d="M9 5L5 9l4 4M5 9h9a5 5 0 0 1 0 10h-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+  leaf:'<use href="#leaf" fill="currentColor" transform="translate(11 21) rotate(18)"/>',
+  balloon:'<path d="M12 21v-6M12 15l-4-4M12 15l4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/><circle cx="8" cy="9" r="2.6" fill="currentColor"/><circle cx="16" cy="9" r="2.6" fill="currentColor"/><circle cx="12" cy="6.5" r="2.6" fill="currentColor"/>',
+  trees:'<path d="M7 21v-5M17 21v-5M12 21v-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="7" cy="12.5" r="3.5" fill="currentColor" opacity=".7"/><circle cx="17" cy="12.5" r="3.5" fill="currentColor" opacity=".7"/><circle cx="12" cy="9" r="4.5" fill="currentColor"/>',
+  heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="currentColor"/>',
+  dawn:'<path d="M4 18h16M7 18a5 5 0 0 1 10 0M12 6v3M5.5 10.5l2 2M18.5 10.5l-2 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+};
+const morningCount=()=>S.records.filter(r=>r.t!=null&&r.t<9).length;
+const memoCount=()=>S.records.filter(r=>r.memo).length;
+const weekendCount=()=>S.records.filter(r=>{const d=parse(r.date).getDay();return d===0||d===6}).length;
+const hasComeback=()=>{const r=recs();for(let i=1;i<r.length;i++)if(diffDays(r[i-1].date,r[i].date)>=4)return true;return false};
+const steadyWeek=()=>{const r=recs();for(let i=6;i<r.length;i++){const w=r.slice(i-6,i+1);if(diffDays(w[0].date,w[6].date)===6&&Math.max(...w.map(x=>x.w))-Math.min(...w.map(x=>x.w))<=.6)return true}return false};
+const bmiNormal=()=>{if(!S.height)return false;const b=v=>v/((S.height/100)**2),c=b(cur());return c>=18.5&&c<23&&(b(S.start)>=23||b(S.start)<18.5)};
 const BADGES=[
-  {id:'first',name:'첫 기록',ic:'1',ok:s=>s.n>=1},
-  {id:'s3',name:'3일 연속',ic:'3',ok:s=>s.best>=3},
-  {id:'s7',name:'7일 연속',ic:'7',ok:s=>s.best>=7},
-  {id:'s30',name:'30일 연속',ic:'30',ok:s=>s.best>=30},
-  {id:'kg1',name:'첫 1kg',ic:'1kg',ok:s=>towardGoal(s.total)&&Math.abs(s.total)>=1},
-  {id:'kg5',name:'5kg 변화',ic:'5kg',ok:s=>towardGoal(s.total)&&Math.abs(s.total)>=5},
-  {id:'n50',name:'기록 50회',ic:'50',ok:s=>s.n>=50},
-  {id:'n100',name:'기록 100회',ic:'100',ok:s=>s.n>=100},
-  {id:'sprout',name:'새싹',svg:'<path d="M12 20v-7M12 13c0-3 2.4-5 5.5-5 0 3-2.4 5-5.5 5zM12 14c0-2.4-1.9-4-4.5-4 0 2.4 1.9 4 4.5 4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',ok:()=>realP()>0||S.garden.length>0},
-  {id:'tree',name:'어린 나무',svg:'<path d="M12 21v-9M12 14l-4-4M12 12l4-5M12 16l3-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',ok:()=>realP()>=.15||S.garden.length>0},
-  {id:'bud',name:'꽃눈',svg:'<ellipse cx="12" cy="10" rx="3.6" ry="5.5" fill="currentColor" opacity=".85"/><path d="M8 14q4 5 8 0M12 18v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',ok:()=>realP()>=.5||S.garden.length>0},
-  {id:'bloom',name:'만개',svg:'<g transform="translate(12 12.5) scale(1.05)" fill="currentColor"><use href="#petal"/><use href="#petal" transform="rotate(72)"/><use href="#petal" transform="rotate(144)"/><use href="#petal" transform="rotate(216)"/><use href="#petal" transform="rotate(288)"/></g>',ok:()=>realP()>=1||S.garden.length>0},
+  {id:'first',name:'첫 기록',ic:'1',desc:'처음으로 체중을 기록하면 받아요.',ok:s=>s.n>=1},
+  {id:'n10',name:'기록 10회',ic:'10',desc:'기록을 10번 남기면 받아요.',ok:s=>s.n>=10},
+  {id:'n50',name:'기록 50회',ic:'50',desc:'기록을 50번 남기면 받아요.',ok:s=>s.n>=50},
+  {id:'n100',name:'기록 100회',ic:'100',desc:'기록을 100번 남기면 받아요.',ok:s=>s.n>=100},
+  {id:'n365',name:'기록 365회',ic:'365',desc:'기록을 365번 남기면 받아요.',ok:s=>s.n>=365},
+  {id:'s3',name:'3일 연속',ic:'3',desc:'3일 연속으로 기록하면 받아요.',ok:s=>s.best>=3},
+  {id:'s7',name:'7일 연속',ic:'7',desc:'일주일 동안 하루도 빠지지 않으면 받아요.',ok:s=>s.best>=7},
+  {id:'s14',name:'14일 연속',ic:'14',desc:'2주 연속으로 기록하면 받아요.',ok:s=>s.best>=14},
+  {id:'s30',name:'30일 연속',ic:'30',desc:'30일 연속으로 기록하면 받아요.',ok:s=>s.best>=30},
+  {id:'s60',name:'60일 연속',ic:'60',desc:'60일 연속으로 기록하면 받아요.',ok:s=>s.best>=60},
+  {id:'s100',name:'100일 연속',ic:'100',desc:'100일 연속으로 기록하면 받아요.',ok:s=>s.best>=100},
+  {id:'kg1',name:'첫 1kg',ic:'1kg',desc:'목표 쪽으로 1kg 움직이면 받아요.',ok:s=>towardGoal(s.total)&&Math.abs(s.total)>=1},
+  {id:'kg3',name:'3kg 변화',ic:'3kg',desc:'목표 쪽으로 3kg 움직이면 받아요.',ok:s=>towardGoal(s.total)&&Math.abs(s.total)>=3},
+  {id:'kg5',name:'5kg 변화',ic:'5kg',desc:'목표 쪽으로 5kg 움직이면 받아요.',ok:s=>towardGoal(s.total)&&Math.abs(s.total)>=5},
+  {id:'kg10',name:'10kg 변화',ic:'10kg',desc:'목표 쪽으로 10kg 움직이면 받아요.',ok:s=>towardGoal(s.total)&&Math.abs(s.total)>=10},
+  {id:'morning',name:'아침형',svg:ICON.sun,desc:'오전 9시 전에 7번 기록하면 받아요.',ok:()=>morningCount()>=7},
+  {id:'early',name:'새벽 기록',svg:ICON.dawn,desc:'오전 7시 전에 기록하면 받아요.',ok:()=>S.records.some(r=>r.t!=null&&r.t<7)},
+  {id:'weekend',name:'주말에도',ic:'주말',desc:'주말에 8번 기록하면 받아요.',ok:()=>weekendCount()>=8},
+  {id:'memo',name:'메모 10개',svg:ICON.pen,desc:'메모를 10번 남기면 받아요.',ok:()=>memoCount()>=10},
+  {id:'back',name:'다시 시작',svg:ICON.back,desc:'며칠 쉬었다가 다시 기록하면 받아요.',ok:()=>hasComeback()},
+  {id:'steady',name:'꾸준함',svg:ICON.heart,desc:'7일 연속 기록하는 동안 변화가 0.6kg 안이면 받아요.',ok:()=>steadyWeek()},
+  {id:'bmi',name:'정상 BMI',ic:'BMI',desc:'키를 입력하고 BMI가 정상 범위에 들어오면 받아요.',ok:()=>bmiNormal()},
+  {id:'sprout',name:'새싹',svg:'<path d="M12 20v-7M12 13c0-3 2.4-5 5.5-5 0 3-2.4 5-5.5 5zM12 14c0-2.4-1.9-4-4.5-4 0 2.4 1.9 4 4.5 4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',desc:'씨앗이 싹을 틔우면 받아요.',ok:()=>realP()>0||S.garden.length>0},
+  {id:'tree',name:'어린 나무',svg:'<path d="M12 21v-9M12 14l-4-4M12 12l4-5M12 16l3-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',desc:'목표의 15%에 닿아 어린 벚나무가 되면 받아요.',ok:()=>realP()>=.15||S.garden.length>0},
+  {id:'leaf',name:'첫 단풍',svg:ICON.leaf,desc:'잎이 단풍 들어 모두 떨어지면 받아요.',ok:()=>realP()>=.22||S.garden.length>0},
+  {id:'bud',name:'꽃눈',svg:'<ellipse cx="12" cy="10" rx="3.6" ry="5.5" fill="currentColor" opacity=".85"/><path d="M8 14q4 5 8 0M12 18v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',desc:'절반을 지나 꽃눈이 모두 맺히면 받아요.',ok:()=>realP()>=.5||S.garden.length>0},
+  {id:'balloon',name:'꽃봉오리',svg:ICON.balloon,desc:'꽃눈에서 꽃봉오리가 터져 나오면 받아요.',ok:()=>realP()>=.9||S.garden.length>0},
+  {id:'bloom',name:'만개',svg:'<g transform="translate(12 12.5) scale(1.05)" fill="currentColor"><use href="#petal"/><use href="#petal" transform="rotate(72)"/><use href="#petal" transform="rotate(144)"/><use href="#petal" transform="rotate(216)"/><use href="#petal" transform="rotate(288)"/></g>',desc:'목표 체중에 도달해 벚꽃이 피면 받아요.',ok:()=>realP()>=1||S.garden.length>0},
+  {id:'garden3',name:'벚꽃 정원',svg:ICON.trees,desc:'정원에 벚나무 3그루를 피우면 받아요.',ok:()=>S.garden.length>=3},
 ];
 function updateBadges(){
   const st=stats();let changed=false;
@@ -933,7 +1065,8 @@ function renderGarden(){
     html+=`<div class="g-tile">${miniTreeSVG(t.seed,1)}<b class="num">${kg(t.start)} → ${kg(t.goal)}kg</b><small>${fmtDot(t.startDate)} – ${fmtDot(t.endDate)}</small><small>${diffDays(t.startDate,t.endDate)+1}일 걸렸어요</small></div>`;
   });
   $('#gardenGrid').innerHTML=html;
-  $('#badges').innerHTML=BADGES.map(b=>{const got=!!S.badges[b.id];return `<div class="badge ${got?'got':''}" title="${got?fmtDot(S.badges[b.id])+' 획득':'아직 받지 못했어요'}"><div class="ic num">${b.svg?`<svg viewBox="0 0 24 24">${b.svg}</svg>`:b.ic}</div>${b.name}</div>`}).join('');
+  $('#badgeTitle').textContent=`배지 ${BADGES.filter(b=>S.badges[b.id]).length}/${BADGES.length}`;
+  $('#badges').innerHTML=BADGES.map(b=>{const got=!!S.badges[b.id];return `<div class="badge ${got?'got':''}" data-badge="${b.id}" role="button" tabindex="0" title="${got?fmtDot(S.badges[b.id])+' 획득':'아직 받지 못했어요'}"><div class="ic num">${b.svg?`<svg viewBox="0 0 24 24">${b.svg}</svg>`:b.ic}</div>${b.name}</div>`}).join('');
 }
 
 /* ================= 시트 ================= */
@@ -947,19 +1080,30 @@ function closeSheet(){const w=$('#sheetWrap');w.classList.remove('open');w.setAt
 $('#sheetDim').onclick=closeSheet;
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSheet();closeModal()}});
 
+/* 기록 사이 하루에 1kg까지만 바뀔 수 있음 (며칠 건너뛰면 그만큼 허용) */
+const MAX_PER_DAY=1;
+function allowedRange(date){
+  const r=recs().filter(x=>x.date!==date);
+  const prev=r.filter(x=>x.date<date).pop(),next=r.find(x=>x.date>date);
+  let lo=20,hi=300;
+  if(prev){const m=MAX_PER_DAY*diffDays(prev.date,date);lo=Math.max(lo,prev.w-m);hi=Math.min(hi,prev.w+m)}
+  if(next){const m=MAX_PER_DAY*diffDays(date,next.date);const l2=Math.max(lo,next.w-m),h2=Math.min(hi,next.w+m);if(l2<=h2){lo=l2;hi=h2}}
+  return{lo:Math.ceil(lo*10-1e-6)/10,hi:Math.floor(hi*10+1e-6)/10,prev,next};
+}
 const MOODS=['상쾌해요','보통이에요','피곤해요','부은 느낌','과식했어요'];
 function openRecord(date){
   date=date||todayStr();
   const ex=S.records.find(r=>r.date===date);
   const prevRec=recs().filter(r=>r.date<date).pop();
-  let w=ex?ex.w:(prevRec?prevRec.w:cur()),mood=ex?ex.mood||'':'';
+  const lim=allowedRange(date);
+  let w=clamp(ex?ex.w:(prevRec?prevRec.w:cur()),lim.lo,lim.hi),mood=ex?ex.mood||'':'';
   openSheet(`
     <div class="sheet-head"><button data-close>취소</button><h3>${ex?'기록 수정':'체중 기록'}</h3><button class="save" id="recSave">저장</button></div>
     <div class="group"><label class="row"><span class="lbl">날짜</span><input type="date" id="recDate" value="${date}" max="${todayStr()}" style="width:auto"></label></div>
     <div class="weigh"><button class="step" data-step="-0.1" aria-label="0.1kg 빼기">−</button>
       <div class="weigh-val"><input id="recW" class="num" type="number" inputmode="decimal" step="0.1" value="${kg(w)}" aria-label="체중"><span>kg</span></div>
       <button class="step" data-step="0.1" aria-label="0.1kg 더하기">+</button></div>
-    <div class="compare num" id="recCmp"></div><div class="err" id="recErr"></div>
+    <div class="compare num" id="recCmp"></div>${lim.prev||lim.next?`<div class="limit num">${kg(lim.lo)}~${kg(lim.hi)}kg 사이로 기록할 수 있어요</div>`:''}<div class="err" id="recErr"></div>
     <div class="group-title" style="margin-top:14px">컨디션</div>
     <div class="group"><div class="chips">${MOODS.map(m=>`<button class="chip ${m===mood?'on':''}" data-mood="${m}">${m}</button>`).join('')}</div></div>
     <div class="group-title">메모</div>
@@ -971,10 +1115,12 @@ function openRecord(date){
       const parts=[];if(prevRec)parts.push(`${fmtMD(prevRec.date)}보다 ${signed(v-prevRec.w)}kg`);
       const rem=S.goal-v;parts.push(Math.sign(rem)===dirOf()?`목표까지 ${kg(Math.abs(rem))}kg`:'목표 도달');
       $('#recCmp').textContent=parts.join(', ');$('#recErr').textContent=''};
+    const limitMsg=()=>{const ref=lim.prev&&lim.next?'앞뒤 기록':lim.prev?`${fmtMD(lim.prev.date)} 기록(${kg(lim.prev.w)}kg)`:`${fmtMD(lim.next.date)} 기록(${kg(lim.next.w)}kg)`;
+      $('#recErr').textContent=`${ref} 기준으로 하루에 1kg까지만 바뀔 수 있어요.`};
     cmp();inp.addEventListener('input',cmp);
     root.querySelectorAll('[data-step]').forEach(b=>{
       let to,iv;const st=+b.dataset.step;
-      const bump=()=>{const v=parseFloat(inp.value)||w;inp.value=kg(clamp(v+st,20,300));cmp()};
+      const bump=()=>{const v=parseFloat(inp.value)||w;if(v+st<lim.lo-1e-9||v+st>lim.hi+1e-9){limitMsg();return}inp.value=kg(v+st);cmp()};
       const stop=()=>{clearTimeout(to);clearInterval(iv)};
       b.addEventListener('pointerdown',e=>{e.preventDefault();bump();to=setTimeout(()=>iv=setInterval(bump,70),380)});
       ['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,stop));
@@ -985,8 +1131,9 @@ function openRecord(date){
       const v=parseFloat(inp.value),d=$('#recDate').value;
       if(isNaN(v)||v<20||v>300){$('#recErr').textContent='20~300kg 사이로 입력해 주세요.';inp.focus();return}
       if(!d||d>todayStr()){$('#recErr').textContent='오늘이나 지난 날짜만 기록할 수 있어요.';return}
+      if(r1(v)<lim.lo||r1(v)>lim.hi){limitMsg();inp.focus();return}
       const before=realP();
-      S.records=S.records.filter(r=>r.date!==d).concat({date:d,w:r1(v),mood,memo:$('#recMemo').value.trim()});
+      S.records=S.records.filter(r=>r.date!==d).concat({date:d,w:r1(v),mood,memo:$('#recMemo').value.trim(),t:ex&&ex.t!=null?ex.t:(d===todayStr()?seoulHour():null)});
       save();closeSheet();toast(ex?'기록을 수정했어요':'기록했어요');
       afterChange(before);
     };
@@ -1044,12 +1191,12 @@ function openNewGoal(){
   openSheet(`<div class="sheet-head"><button data-close>취소</button><h3>새 목표</h3><button class="save" id="ngSave">시작</button></div>
     <p style="color:var(--ink-2);margin:4px 2px 0;font-size:14px">지금 나무는 정원에 남고, 빈 땅에 새 씨앗을 심어요.</p>
     <div class="group-title">체중</div>
-    <div class="group"><label class="row"><span class="lbl">지금 체중</span><span><input id="ngStart" class="num" type="number" step="0.1" inputmode="decimal" value="${kg(cur())}"><span class="unit">kg</span></span></label>
+    <div class="group"><div class="row"><span class="lbl">시작 체중<span class="sub">가장 최근 기록이에요</span></span><span class="val num"><b>${kg(cur())}</b> kg</span></div>
     <label class="row"><span class="lbl">새 목표 체중</span><span><input id="ngGoal" class="num" type="number" step="0.1" inputmode="decimal" placeholder="0.0"><span class="unit">kg</span></span></label></div>
     <div class="err" id="ngErr"></div>`,root=>{
     root.querySelector('[data-close]').onclick=closeSheet;
     $('#ngSave').onclick=()=>{
-      const s=parseFloat($('#ngStart').value),g=parseFloat($('#ngGoal').value);
+      const s=cur(),g=parseFloat($('#ngGoal').value);
       if(!(s>=20&&s<=300&&g>=20&&g<=300)){$('#ngErr').textContent='20~300kg 사이로 입력해 주세요.';return}
       if(r1(s)===r1(g)){$('#ngErr').textContent='지금 체중과 목표 체중이 달라야 해요.';return}
       S.garden.push({seed:S.seed,start:S.start,goal:S.goal,startDate:S.startDate,endDate:todayStr()});
@@ -1065,7 +1212,7 @@ function openSettings(){
   openSheet(`<div class="sheet-head"><button data-close>닫기</button><h3>설정</h3><button class="save" id="setSave">저장</button></div>
     <div class="group-title" style="margin-top:8px">목표</div>
     <div class="group">
-      <label class="row"><span class="lbl">시작 체중</span><span><input id="setStart" class="num" type="number" step="0.1" inputmode="decimal" value="${kg(S.start)}"><span class="unit">kg</span></span></label>
+      <div class="row"><span class="lbl">시작 체중<span class="sub">기록을 시작할 때 정해지고 바꿀 수 없어요</span></span><span class="val num"><b>${kg(S.start)}</b> kg</span></div>
       <label class="row"><span class="lbl">목표 체중</span><span><input id="setGoal" class="num" type="number" step="0.1" inputmode="decimal" value="${kg(S.goal)}"><span class="unit">kg</span></span></label>
       <label class="row"><span class="lbl">키</span><span><input id="setH" class="num" type="number" step="0.1" inputmode="decimal" value="${S.height||''}" placeholder="선택"><span class="unit">cm</span></span></label>
     </div><div class="err" id="setErr"></div>
@@ -1084,15 +1231,16 @@ function openSettings(){
       <button class="row" id="impJson"><span class="lbl">백업 파일 불러오기</span><span class="val"></span></button>
     </div>
     <p style="font-size:12.5px;color:var(--ink-3);margin:8px 4px 0">기록은 이 기기의 브라우저에만 저장돼요. 기기를 바꾸기 전에 백업 파일을 저장해 두세요.</p>
-    <button class="btn btn-danger" id="wipe" style="margin-top:18px">모든 데이터 지우기</button>
+    <div class="group-title">초기화</div>
+    <div class="group"><button class="row" id="wipe"><span class="lbl" style="color:var(--danger);font-weight:600">전체 초기화<span class="sub">기록, 나무, 정원, 배지, 설정을 모두 지우고 처음부터 시작해요</span></span></button></div>
   `,root=>{
     root.querySelector('[data-close]').onclick=closeSheet;
     $('#setSave').onclick=()=>{
-      const s=parseFloat($('#setStart').value),g=parseFloat($('#setGoal').value),h=parseFloat($('#setH').value);
+      const s=S.start,g=parseFloat($('#setGoal').value),h=parseFloat($('#setH').value);
       if(!(s>=20&&s<=300&&g>=20&&g<=300)){$('#setErr').textContent='체중은 20~300kg 사이로 입력해 주세요.';return}
       if(r1(s)===r1(g)){$('#setErr').textContent='시작 체중과 목표 체중이 달라야 해요.';return}
       if($('#setH').value&&!(h>=100&&h<=230)){$('#setErr').textContent='키는 100~230cm 사이로 입력해 주세요.';return}
-      S.start=r1(s);S.goal=r1(g);S.height=$('#setH').value?r1(h):null;save();closeSheet();render();toast('저장했어요');
+      S.goal=r1(g);S.height=$('#setH').value?r1(h):null;save();closeSheet();render();toast('저장했어요');
     };
     root.querySelectorAll('[data-th]').forEach(b=>b.onclick=()=>{S.theme=b.dataset.th;save();root.querySelectorAll('[data-th]').forEach(x=>x.classList.toggle('on',x===b));render()});
     $('#pvRange').oninput=e=>{previewP=+e.target.value/100;$('#pvLbl').textContent=e.target.value+'%';$('#pvOff').hidden=false;render()};
@@ -1100,7 +1248,7 @@ function openSettings(){
     $('#expJson').onclick=()=>download(`벚꽃체중-백업-${todayStr()}.json`,JSON.stringify(S,null,2),'application/json');
     $('#expCsv').onclick=()=>download(`벚꽃체중-기록-${todayStr()}.csv`,'﻿날짜,체중(kg),컨디션,메모\n'+recs().map(r=>[r.date,r.w,r.mood||'',`"${(r.memo||'').replace(/"/g,'""')}"`].join(',')).join('\n'),'text/csv');
     $('#impJson').onclick=()=>$('#importFile').click();
-    $('#wipe').onclick=()=>{if(confirm('모든 기록과 정원이 지워지고 되돌릴 수 없어요. 계속할까요?')){try{localStorage.removeItem(KEY);localStorage.removeItem(OLD_KEY)}catch(e){}S=null;previewP=null;tab='home';closeSheet();render()}};
+    $('#wipe').onclick=()=>{if(confirm(`기록 ${S.records.length}개, 정원의 나무 ${S.garden.length}그루, 배지가 모두 지워져요. 되돌릴 수 없어요. 전체 초기화할까요?`)){try{localStorage.removeItem(KEY);localStorage.removeItem(OLD_KEY)}catch(e){}S=null;previewP=null;tab='home';calMonth=null;closeSheet();render();toast('전체 초기화했어요')}};
   });
 }
 function download(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
@@ -1133,9 +1281,10 @@ function burst(){
 }
 
 document.addEventListener('click',e=>{
-  const t=e.target.closest('[data-tab],[data-edit],[data-open],[data-act]');
+  const t=e.target.closest('[data-tab],[data-edit],[data-open],[data-act],[data-badge]');
   if(e.target.closest('#home-scene'))burst();
   if(!t)return;
+  if(t.dataset.badge){const b=BADGES.find(x=>x.id===t.dataset.badge);toast(S.badges[b.id]?`${fmtDot(S.badges[b.id])}에 받았어요`:b.desc);return}
   if(t.dataset.tab){tab=t.dataset.tab;closeModal();render();window.scrollTo(0,0)}
   else if(t.dataset.edit&&!t.disabled)openRecord(t.dataset.edit);
   else if(t.dataset.open==='settings')openSettings();
@@ -1157,6 +1306,7 @@ $('#ob-form').onsubmit=e=>{
 };
 
 render();
+fetchWx();
 </script>
 </body>
 </html>

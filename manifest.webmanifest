@@ -1,0 +1,15 @@
+{
+  "name": "벚꽃 체중",
+  "short_name": "벚꽃 체중",
+  "description": "매일 아침 체중을 기록하면 목표에 가까워질수록 벚나무가 자라는 앱",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F5F3F4",
+  "theme_color": "#F5F3F4",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
