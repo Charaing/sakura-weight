@@ -254,6 +254,68 @@ button{cursor:pointer;background:none;border:0;padding:0}
 .modal-body .btn+.btn{margin-top:8px}
 .toast{position:fixed;left:50%;bottom:calc(var(--tab-h) + env(safe-area-inset-bottom) + 14px);transform:translate(-50%,12px);background:var(--ink);color:var(--surface);padding:11px 18px;border-radius:999px;font-size:14px;font-weight:550;opacity:0;transition:.25s;z-index:60;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translate(-50%,0)}
+/* ---------- 팁 · 물 · SOS ---------- */
+.row-main{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
+.rico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--sakura-wash);font-size:18px;flex:none}
+.rtxt{min-width:0;flex:1}
+.rtxt b{display:block;font-weight:600;line-height:1.35;word-break:keep-all}
+.rtxt .sub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chev{width:16px;height:16px;color:var(--ink-3);flex:none}
+.water{display:flex;justify-content:space-between;background:var(--surface);border-radius:var(--r-md);padding:10px 10px}
+.cup-b{width:36px;height:36px;display:grid;place-items:center;border-radius:50%}
+.cup-b svg{width:30px;height:30px;transition:transform .2s}
+.cup-b use{fill:var(--fill-2);transition:fill .2s}
+.cup-b.on use{fill:var(--sakura)}
+.cup-b.on svg{transform:rotate(36deg)}
+.tip-card{display:block;width:100%;text-align:left;background:var(--surface);border-radius:var(--r-md);padding:14px 16px}
+.tip-card small{color:var(--ink-2);font-size:12.5px}
+.tip-card b{display:block;font-size:16px;font-weight:700;margin:2px 0 4px;letter-spacing:-.02em;word-break:keep-all}
+.tip-card span{display:block;font-size:13.5px;color:var(--ink-2);word-break:keep-all}
+.search-box{display:flex;align-items:center;gap:8px;height:42px;background:var(--fill);border-radius:12px;padding:0 12px}
+.search-box svg{width:18px;height:18px;color:var(--ink-3);flex:none}
+.search-box input{flex:1;min-width:0;border:0;background:none;outline:none;color:var(--ink)}
+.search-box input::placeholder{color:var(--ink-3)}
+.tchips{display:flex;gap:6px;overflow-x:auto;margin:12px -20px 0;padding:0 20px;scrollbar-width:none}
+.tchips::-webkit-scrollbar{display:none}
+.tchips .chip{flex:none;white-space:nowrap;font-size:13.5px}
+.sos-hero{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--sakura-wash);border-radius:var(--r-md);padding:14px 16px;margin-bottom:14px}
+.sos-hero svg{width:40px;height:40px;flex:none}
+.sos-hero b{display:block;font-size:16px;font-weight:700;letter-spacing:-.02em}
+.sos-hero span{font-size:13px;color:var(--ink-2)}
+.sos-page{min-height:100vh;background:linear-gradient(var(--sakura-wash),var(--bg) 360px)}
+.sos-title{font-size:26px;font-weight:750;letter-spacing:-.035em;margin:4px 0 6px;line-height:1.3;word-break:keep-all}
+.sos-lead{color:var(--ink-2);margin:0 0 4px;word-break:keep-all}
+.halt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.halt-grid button{background:var(--surface);border-radius:var(--r-md);padding:14px;text-align:left;box-shadow:inset 0 0 0 1.5px transparent}
+.halt-grid button.on{box-shadow:inset 0 0 0 2px var(--sakura-deep)}
+.halt-grid b{display:block;font-size:15px;font-weight:650}
+.halt-grid small{display:block;color:var(--ink-2);font-size:12.5px;margin-top:2px;line-height:1.35}
+.bloom{display:block;width:240px;height:240px;margin:6px auto 0}
+.bloom .core{transform-box:fill-box;transform-origin:center;transform:scale(.55);transition-property:transform;transition-timing-function:ease-in-out}
+.sos-word{text-align:center;font-size:22px;font-weight:700;letter-spacing:-.03em;margin:4px 0 0}
+.sos-clock{text-align:center;color:var(--ink-2);font-size:14px;margin:2px 0 0}
+.steps .row{align-items:flex-start;padding:13px 16px}
+.chk{width:24px;height:24px;border-radius:50%;box-shadow:inset 0 0 0 2px var(--fill-2);display:grid;place-items:center;flex:none;margin-top:1px}
+.chk svg{width:14px;height:14px;opacity:0}
+.row.done .chk{background:var(--sakura-deep);box-shadow:none}
+.row.done .chk svg{opacity:1}
+.row.done .stxt{color:var(--ink-2)}
+.stxt{flex:1;word-break:keep-all}
+.tip-h{font-size:23px;font-weight:750;letter-spacing:-.035em;line-height:1.3;margin:2px 0 12px;word-break:keep-all}
+.tip-cat{font-size:13px;color:var(--ink-2)}
+.refs{margin:0;padding:12px 16px 12px 30px;font-size:12.5px;color:var(--ink-2);background:var(--surface);border-radius:var(--r-md)}
+.refs li{margin:3px 0}
+.tip-nav{display:flex;gap:8px;margin-top:16px}
+.tip-nav .btn{height:48px;font-size:15px}
+.tip-nav .btn:disabled{opacity:.4}
+.fine{font-size:12.5px;color:var(--ink-3);margin:12px 4px 0;word-break:keep-all}
+.fine a{color:var(--ink-2)}
+.urge-badge{font-size:12.5px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--fill);color:var(--ink-2);white-space:nowrap}
+.urge-badge.good{background:rgba(79,138,75,.12);color:var(--leaf)}
+@media (prefers-reduced-motion: reduce){
+  .bloom .core{transition:none!important}
+  .cup-b svg,.cup-b use{transition:none}
+}
 @media (prefers-reduced-motion: reduce){
   .sway,.fall,.twinkle,.shake,.rain,.snow{animation:none}
   .sheet,.sheet-dim,.toast{transition:none}
@@ -334,6 +396,34 @@ button{cursor:pointer;background:none;border:0;padding:0}
       <div class="today" id="todayBox"></div>
       <div class="quick" id="quick"></div>
       <div id="insight"></div>
+      <div id="homeExtra"></div>
+    </div>
+  </section>
+
+  <!-- 팁 -->
+  <section class="view" id="v-tips">
+    <div class="page">
+      <div class="page-head"><h1 class="large-title">팁</h1></div>
+      <button class="sos-hero" data-go-sos><svg viewBox="-20 -20 40 40" aria-hidden="true"><use href="#flC" transform="scale(1.9)"/></svg>
+        <span style="flex:1"><b>먹고 싶은 마음이 들 때</b><span id="sosHeroSub">숨을 고르며 충동이 지나가길 같이 기다려요</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+      <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="tipQ" type="search" placeholder="야식, 가짜 배고픔, 정체기, 회식" autocomplete="off" aria-label="상황 검색"></div>
+      <div class="segmented" id="tipSeg" style="margin-top:10px">
+        <button data-s="all" class="on">전체</button><button data-s="fav">저장함</button><button data-s="tried">해본 것</button>
+      </div>
+      <div class="tchips" id="tipChips"></div>
+      <div class="group-title" id="tipCount"></div>
+      <div class="group" id="tipList"></div>
+      <div class="empty" id="tipEmpty" hidden></div>
+    </div>
+  </section>
+
+  <!-- 충동 넘기기 -->
+  <section class="view sos-page" id="v-sos">
+    <div class="page">
+      <div class="page-head"><button class="round-btn" data-tab="tips" aria-label="팁으로 돌아가기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg></button><span></span></div>
+      <div id="sosBody"></div>
     </div>
   </section>
 
@@ -366,6 +456,7 @@ button{cursor:pointer;background:none;border:0;padding:0}
         </div>
       </div>
       <div id="statGroups"></div>
+      <div id="urgeStats"></div>
     </div>
   </section>
 
@@ -383,6 +474,7 @@ button{cursor:pointer;background:none;border:0;padding:0}
   <nav class="tabbar" id="tabbar" hidden>
     <button data-tab="home" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 20h16" stroke-linecap="round"/><path d="M12 20V8.5M12 9.5c0-2.6 2-4.5 4.8-4.5 0 2.6-2 4.5-4.8 4.5zM12 10.5C12 8.4 10.4 7 8 7c0 2.1 1.6 3.5 4 3.5z"/></svg>홈</button>
     <button data-tab="log"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>기록</button>
+    <button data-tab="tips"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg>팁</button>
     <button data-tab="stats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5h16"/><path d="M5 15l4.5-4.5 3.5 3L19 7"/></svg>통계</button>
     <button data-tab="garden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="2.2"/><path d="M12 9.8c-1.6-1.4-1.6-4.3 0-5.8 1.6 1.5 1.6 4.4 0 5.8zM14.1 11.3c.4-2.1 2.9-3.6 5-3-.2 2.2-2.8 3.7-5 3zM13.3 14c2 .8 2.8 3.6 1.6 5.4-1.9-1-2.6-3.6-1.6-5.4zM10.7 14c1 1.8.3 4.4-1.6 5.4-1.2-1.8-.4-4.6 1.6-5.4zM9.9 11.3c-2.2.7-4.8-.8-5-3 2.1-.6 4.6.9 5 3z"/></svg>정원</button>
   </nav>
@@ -395,6 +487,18 @@ button{cursor:pointer;background:none;border:0;padding:0}
 <div class="modal" id="modal"><div class="modal-card" id="modalCard"></div></div>
 <div class="toast" id="toast" role="status"></div>
 <input type="file" id="importFile" accept="application/json" hidden>
+<script src="data/refs.js"></script>
+<script src="data/cats.js"></script>
+<script src="data/d01.js"></script>
+<script src="data/d02.js"></script>
+<script src="data/d03.js"></script>
+<script src="data/d04.js"></script>
+<script src="data/d05.js"></script>
+<script src="data/d06.js"></script>
+<script src="data/d07.js"></script>
+<script src="data/d08.js"></script>
+<script src="data/d09.js"></script>
+<script src="data/d10.js"></script>
 
 <script>
 /* ================= 저장소 ================= */
@@ -404,7 +508,7 @@ const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const newSeed=()=>1+Math.floor(Math.random()*2147483000);
 
 function normalize(s){
-  return Object.assign({v:2,start:null,goal:null,height:null,startDate:todayStr(),seed:newSeed(),records:[],garden:[],milestones:{},badges:{},theme:'system'},s);
+  return Object.assign({v:2,start:null,goal:null,height:null,startDate:todayStr(),seed:newSeed(),records:[],garden:[],milestones:{},badges:{},theme:'system',water:{},urges:[],favs:{},tried:{}},s);
 }
 function load(){
   try{const s=JSON.parse(localStorage.getItem(KEY)); if(s&&s.start!=null) return normalize(s);}catch(e){}
@@ -830,6 +934,9 @@ function render(){
   if(tab==='log')renderLog();
   if(tab==='stats')renderStats();
   if(tab==='garden')renderGarden();
+  if(tab==='tips')renderTips();
+  if(tab==='sos')renderSos();
+  if(tab==='stats')renderUrgeStats();
 }
 function showView(v){
   document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));
@@ -877,6 +984,7 @@ function renderHome(){
   else msg='최근 3주 추세가 목표 쪽으로 향하면 도착일을 계산해 드려요.';
   const action=realP()>=1?`<button class="link-btn" style="padding:0;margin-top:6px" data-act="plant">정원에 남기고 새로 시작</button>`:'';
   $('#insight').innerHTML=`<div class="insight"><svg width="16" height="16" viewBox="0 0 16 16"><use href="#petal" fill="#E07A98" transform="translate(8 9.5) scale(.9)"/><use href="#petal" fill="#EE9AB2" transform="translate(8 9.5) rotate(72) scale(.9)"/><use href="#petal" fill="#E88AA5" transform="translate(8 9.5) rotate(-72) scale(.9)"/></svg><div>${msg}${action?'<br>'+action:''}</div></div>`;
+  renderHomeExtra();
 }
 
 function renderMeta(){
@@ -1054,6 +1162,10 @@ const BADGES=[
   {id:'balloon',name:'꽃봉오리',svg:ICON.balloon,desc:'꽃눈에서 꽃봉오리가 터져 나오면 받아요.',ok:()=>realP()>=.9||S.garden.length>0},
   {id:'bloom',name:'만개',svg:'<g transform="translate(12 12.5) scale(1.05)" fill="currentColor"><use href="#petal"/><use href="#petal" transform="rotate(72)"/><use href="#petal" transform="rotate(144)"/><use href="#petal" transform="rotate(216)"/><use href="#petal" transform="rotate(288)"/></g>',desc:'목표 체중에 도달해 벚꽃이 피면 받아요.',ok:()=>realP()>=1||S.garden.length>0},
   {id:'garden3',name:'벚꽃 정원',svg:ICON.trees,desc:'정원에 벚나무 3그루를 피우면 받아요.',ok:()=>S.garden.length>=3},
+  {id:'urge1',name:'충동 넘기기',svg:'<path d="M4 14c3-4 5 4 8 0s5 4 8 0" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M4 9c3-4 5 4 8 0s5 4 8 0" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" opacity=".5"/>',desc:'먹고 싶은 충동을 타이머로 처음 넘기면 받아요.',ok:()=>S.urges.some(u=>u.result==='passed')},
+  {id:'urge10',name:'충동 10번',ic:'10',desc:'먹고 싶은 충동을 10번 넘기면 받아요.',ok:()=>S.urges.filter(u=>u.result==='passed').length>=10},
+  {id:'water8',name:'물 8잔',svg:'<path d="M12 3.5c3 4 5.5 7 5.5 10a5.5 5.5 0 0 1-11 0c0-3 2.5-6 5.5-10z" fill="currentColor"/>',desc:'하루에 물 8잔을 채우면 받아요.',ok:()=>Object.values(S.water).some(n=>n>=8)},
+  {id:'tried10',name:'해본 방법 10개',ic:'팁',desc:'팁 속 해결법을 10개 해보고 체크하면 받아요.',ok:()=>Object.values(S.tried).reduce((a,b)=>a+b.length,0)>=10},
 ];
 function updateBadges(){
   const st=stats();let changed=false;
@@ -1315,8 +1427,219 @@ let lastTouch=0;document.addEventListener('touchend',e=>{const n=Date.now();if(n
 document.addEventListener('wheel',e=>{if(e.ctrlKey)e.preventDefault()},{passive:false});
 document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&['+','-','=','0'].includes(e.key))e.preventDefault()});
 
+/* ================= 다이어트 팁 400 · 물 · 충동 넘기기 ================= */
+const TIPS=(window.DATA||[]).map((d,i)=>({id:i+1,cat:d[0],t:d[1],c:d[2],s:d[3],r:d[4]||[]}));
+const TCATS=window.CATS||[],TREFS=window.REFS||{},TCAT={};
+TCATS.forEach(c=>TCAT[c.id]=c);
+const tnorm=s=>String(s).toLowerCase().replace(/\s+/g,'');
+TIPS.forEach(it=>it.hay=tnorm([it.t,it.c,it.s.join(' '),TCAT[it.cat].name].join(' ')));
+const CHEV='<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg>';
+const FLOWER=`<g><use href="#petal"/><use href="#petal" transform="rotate(72)"/><use href="#petal" transform="rotate(144)"/><use href="#petal" transform="rotate(216)"/><use href="#petal" transform="rotate(288)"/></g>`;
+let tipQ='',tipCat='all',tipSeg='all',tipCtx=[],tipId=0;
+
+function tipRow(it){
+  const c=TCAT[it.cat];
+  return `<button class="row" data-tip="${it.id}"><span class="row-main"><span class="rico">${c.emoji}</span><span class="rtxt"><b>${esc(it.t)}</b><span class="sub">${esc(it.s[0])}</span></span></span>${CHEV}</button>`;
+}
+function momentFor(h){
+  if(h>=21||h<5)return{e:'🌙',t:'밤에 배고플 때 해볼 것',s:'야식·밤 배고픔 대처법 20가지',cat:'night'};
+  if(h<10)return{e:'🍳',t:'아침을 든든하게 시작하기',s:'오전 허기를 줄이는 방법',q:'아침'};
+  if(h<14)return{e:'🍱',t:'점심 메뉴 고르기',s:'외식·배달·편의점에서 고르는 법',cat:'out'};
+  if(h<18)return{e:'🍫',t:'오후에 단 게 당길 때',s:'단 것 당김 대처법 20가지',cat:'crave'};
+  return{e:'🍻',t:'오늘 저녁 약속이 있다면',s:'회식·술자리에서 버티는 법',cat:'social'};
+}
+function renderHomeExtra(){
+  const el=$('#homeExtra');if(!el)return;
+  const t=todayStr(),n=S.water[t]||0,m=momentFor(seoulHour());
+  const day=Math.floor(parse(t).getTime()/864e5),tip=TIPS[((day*37)%TIPS.length+TIPS.length)%TIPS.length];
+  let cups='';for(let i=0;i<8;i++)cups+=`<button class="cup-b ${i<n?'on':''}" data-cup="${i}" aria-label="물 ${i+1}잔"><svg viewBox="-11 -11 22 22">${FLOWER}</svg></button>`;
+  el.innerHTML=`<div class="group-title">지금 필요한 도움</div>
+    <div class="group">
+      <button class="row" data-moment><span class="row-main"><span class="rico">${m.e}</span><span class="rtxt"><b>${m.t}</b><span class="sub">${m.s}</span></span></span>${CHEV}</button>
+      <button class="row" data-go-sos><span class="row-main"><span class="rico"><svg width="22" height="22" viewBox="-11 -11 22 22" style="color:var(--sakura-deep)"><g fill="currentColor">${FLOWER}</g></svg></span><span class="rtxt"><b>먹고 싶은 마음이 들 때</b><span class="sub">숨 고르며 충동 넘기기</span></span></span>${CHEV}</button>
+    </div>
+    <div class="group-title" style="display:flex;justify-content:space-between"><span>오늘 마신 물</span><span class="num">${n} / 8잔</span></div>
+    <div class="water">${cups}</div>
+    <div class="group-title">오늘의 팁</div>
+    <button class="tip-card" data-tip="${tip.id}" data-solo><small>${TCAT[tip.cat].emoji} ${esc(TCAT[tip.cat].name)}</small><b>${esc(tip.t)}</b><span>${esc(tip.s[0])}</span></button>`;
+  el.querySelector('[data-moment]').onclick=()=>{tipCat=m.cat||'all';tipQ=m.q||'';tipSeg='all';tab='tips';render();window.scrollTo(0,0)};
+}
+
+function tipFiltered(){
+  const words=tipQ?tipQ.split(/\s+/).map(tnorm).filter(Boolean):[];
+  return TIPS.filter(it=>{
+    if(tipSeg==='fav'&&!S.favs[it.id])return false;
+    if(tipSeg==='tried'&&!(S.tried[it.id]&&S.tried[it.id].length))return false;
+    if(tipCat!=='all'&&it.cat!==tipCat)return false;
+    return words.every(w=>it.hay.includes(w));
+  });
+}
+function renderTips(){
+  if($('#tipQ').value!==tipQ)$('#tipQ').value=tipQ;
+  $('#tipSeg').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.s===tipSeg));
+  $('#tipChips').innerHTML=`<button class="chip ${tipCat==='all'?'on':''}" data-tc="all">전체</button>`+TCATS.map(c=>`<button class="chip ${tipCat===c.id?'on':''}" data-tc="${c.id}">${c.emoji} ${esc(c.name)}</button>`).join('');
+  const on=$('#tipChips .on');if(on&&on.dataset.tc!=='all')on.scrollIntoView({inline:'center',block:'nearest'});
+  const passed=S.urges.filter(u=>u.result==='passed').length;
+  $('#sosHeroSub').textContent=passed?`지금까지 충동을 ${passed}번 넘겼어요`:'숨을 고르며 충동이 지나가길 같이 기다려요';
+  const list=tipFiltered();tipCtx=list.map(x=>x.id);
+  $('#tipCount').textContent=`${list.length}개의 상황`;
+  $('#tipList').innerHTML=list.map(tipRow).join('');
+  $('#tipList').hidden=!list.length;
+  const em=$('#tipEmpty');em.hidden=!!list.length;
+  em.innerHTML=tipSeg==='fav'?'아직 저장한 팁이 없어요.<br>팁을 열고 저장을 누르면 여기에 모여요.':tipSeg==='tried'?'아직 해본 방법이 없어요.<br>팁 속 해결법 옆 동그라미를 눌러 보세요.':`“${esc(tipQ)}”에 맞는 상황이 없어요.<br>배고픔, 술, 운동처럼 짧게 찾아보세요.`;
+}
+$('#tipQ').addEventListener('input',e=>{tipQ=e.target.value.trim();renderTips()});
+$('#tipSeg').onclick=e=>{const b=e.target.closest('button');if(!b)return;tipSeg=b.dataset.s;renderTips()};
+$('#tipChips').onclick=e=>{const b=e.target.closest('[data-tc]');if(!b)return;tipCat=b.dataset.tc;renderTips()};
+
+function openTip(id,ctx){
+  const it=TIPS[id-1];if(!it)return;
+  tipId=id;const list=ctx&&ctx.includes(id)?ctx:[id],pos=list.indexOf(id),c=TCAT[it.cat],done=S.tried[id]||[];
+  const check='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>';
+  openSheet(`<div class="sheet-head"><button data-close>닫기</button><h3></h3><button class="save" id="tipFav">${S.favs[id]?'저장됨':'저장'}</button></div>
+    <div class="tip-cat">${c.emoji} ${esc(c.name)}</div>
+    <h2 class="tip-h">${esc(it.t)}</h2>
+    <div class="insight" style="margin-top:0"><div>${esc(it.c)}</div></div>
+    <div class="group-title">이렇게 해보세요</div>
+    <div class="group steps">${it.s.map((x,i)=>`<button class="row ${done.includes(i)?'done':''}" data-step="${i}" aria-pressed="${done.includes(i)}"><span class="chk">${check}</span><span class="stxt">${esc(x)}</span></button>`).join('')}</div>
+    <p class="fine" style="margin-top:6px">해본 방법을 체크하면 팁 탭의 '해본 것'에 모여요.</p>
+    ${it.r.length?`<div class="group-title">근거 자료</div><ul class="refs">${it.r.map(k=>TREFS[k]?`<li>${esc(TREFS[k])}</li>`:'').join('')}</ul>`:''}
+    <div class="tip-nav">
+      <button class="btn btn-soft" id="tipPrev" ${pos<=0?'disabled':''}>이전</button>
+      <button class="btn btn-soft" id="tipShare">공유</button>
+      <button class="btn btn-soft" id="tipNext" ${pos>=list.length-1?'disabled':''}>다음</button>
+    </div>
+    <p class="fine">일반적인 건강 정보이며 진단이나 치료를 대신하지 않아요. 질환이 있거나 임신 중이라면 전문가와 상의하세요. 폭식이나 구토가 반복되면 정신건강상담전화 1577-0199. <a href="#" id="allRefs">참고 문헌 전체 보기</a></p>`,root=>{
+    root.parentElement.scrollTop=0;
+    root.querySelector('[data-close]').onclick=closeSheet;
+    $('#tipFav').onclick=e=>{if(S.favs[id]){delete S.favs[id];toast('저장을 취소했어요')}else{S.favs[id]=1;toast('저장했어요')}save();e.target.textContent=S.favs[id]?'저장됨':'저장'};
+    root.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>{
+      const i=+b.dataset.step,arr=S.tried[id]||[],k=arr.indexOf(i);
+      if(k>=0)arr.splice(k,1);else arr.push(i);
+      if(arr.length)S.tried[id]=arr;else delete S.tried[id];
+      b.classList.toggle('done',k<0);b.setAttribute('aria-pressed',k<0);
+      save();if(k<0)toast('해본 것에 추가했어요');badgeCheck();
+    });
+    $('#tipPrev').onclick=()=>pos>0&&openTip(list[pos-1],list);
+    $('#tipNext').onclick=()=>pos<list.length-1&&openTip(list[pos+1],list);
+    $('#tipShare').onclick=()=>shareTip(it);
+    $('#allRefs').onclick=e=>{e.preventDefault();showAllRefs()};
+  });
+  sheetClose=()=>{try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}if(tab==='tips')renderTips()};
+  try{history.replaceState(null,'','#tip-'+id)}catch(e){}
+}
+function shareTip(it){
+  const url=location.origin+location.pathname+'#tip-'+it.id;
+  const text=it.t+'\n'+it.s.map((x,i)=>`${i+1}. ${x}`).join('\n');
+  if(navigator.share){navigator.share({title:it.t,text,url}).catch(()=>{});return}
+  if(navigator.clipboard)navigator.clipboard.writeText(text+'\n'+url).then(()=>toast('해결법과 링크를 복사했어요'),()=>toast('복사하지 못했어요. 주소창의 링크를 복사해 주세요'));
+}
+function showAllRefs(){
+  const keys=Object.keys(TREFS).sort((a,b)=>TREFS[a].localeCompare(TREFS[b]));
+  openSheet(`<div class="sheet-head"><button data-close>닫기</button><h3>참고 문헌 ${keys.length}건</h3><span style="min-width:48px"></span></div>
+    <div class="insight" style="margin-top:0"><div>각 해결법은 아래 논문, 진료 지침, 책의 결론을 일상에서 실천할 수 있게 정리한 것이에요. 효과는 사람마다 다를 수 있어요.</div></div>
+    <ul class="refs" style="margin-top:12px">${keys.map(k=>`<li>${esc(TREFS[k])}</li>`).join('')}</ul>`,root=>{root.parentElement.scrollTop=0;root.querySelector('[data-close]').onclick=closeSheet});
+}
+function badgeCheck(){const before=Object.keys(S.badges).length;updateBadges();const got=BADGES.filter(b=>S.badges[b.id]);if(got.length>before)toast(`배지를 받았어요: ${got[got.length-1].name}`)}
+
+/* 물 */
+document.addEventListener('click',e=>{
+  const cup=e.target.closest('[data-cup]');
+  if(cup){
+    const t=todayStr(),i=+cup.dataset.cup,n=S.water[t]||0;
+    S.water[t]=n===i+1?i:i+1;save();renderHomeExtra();
+    if(S.water[t]===8)toast('오늘 물 8잔을 채웠어요');
+    badgeCheck();return;
+  }
+  const tp=e.target.closest('[data-tip]');
+  if(tp){openTip(+tp.dataset.tip,tp.hasAttribute('data-solo')?[+tp.dataset.tip]:(tp.closest('#tipList')?tipCtx:SOS.ctx));return}
+  if(e.target.closest('[data-go-sos]')){tab='sos';render();window.scrollTo(0,0)}
+});
+
+/* 충동 넘기기 */
+const HALT={H:['배고파요','마지막 식사가 3시간도 넘었어요','배고'],A:['스트레스 받아요','화나거나 불안해요','스트레스'],L:['외롭거나 심심해요','할 일이 없거나 허전해요','외로'],T:['피곤해요','잠이 부족하거나 지쳤어요','피곤']};
+const SOS={phase:'intro',halt:null,min:10,endAt:0,tick:null,bt:null,ctx:[]};
+function sosTipIds(){
+  const q=SOS.halt?tnorm(HALT[SOS.halt][2]):null;
+  let pool=q?TIPS.filter(it=>tnorm(it.t).includes(q)):[];
+  if(pool.length<3)pool=pool.concat(TIPS.filter(it=>(it.cat==='fake'||it.cat==='crave')&&!pool.includes(it)));
+  return pool.slice(0,3).map(x=>x.id);
+}
+function renderSos(){
+  const b=$('#sosBody');
+  if(SOS.phase==='intro'){
+    b.innerHTML=`<h1 class="sos-title">먹고 싶은 마음,<br>잠깐만 같이 지켜봐요</h1>
+      <p class="sos-lead">먹고 싶은 충동은 대부분 몇 분 안에 가장 세졌다가 줄어들어요. 지금 어떤 상태인지 골라 주세요.</p>
+      <div class="group-title">지금 나는</div>
+      <div class="halt-grid">${Object.entries(HALT).map(([k,v])=>`<button data-halt="${k}" class="${SOS.halt===k?'on':''}" aria-pressed="${SOS.halt===k}"><b>${v[0]}</b><small>${v[1]}</small></button>`).join('')}</div>
+      <div class="group-title">타이머</div>
+      <div class="segmented" id="sosLen">${[3,10,20].map(m=>`<button data-m="${m}" class="${SOS.min===m?'on':''}">${m}분</button>`).join('')}</div>
+      <button class="btn btn-primary" id="sosStart" style="margin-top:20px">타이머 시작하기</button>`;
+    b.querySelectorAll('[data-halt]').forEach(x=>x.onclick=()=>{SOS.halt=SOS.halt===x.dataset.halt?null:x.dataset.halt;renderSos()});
+    $('#sosLen').onclick=e=>{const x=e.target.closest('button');if(!x)return;SOS.min=+x.dataset.m;renderSos()};
+    $('#sosStart').onclick=sosStart;
+  }else if(SOS.phase==='run'){
+    SOS.ctx=sosTipIds();
+    b.innerHTML=`<svg class="bloom" viewBox="-60 -60 120 120" aria-hidden="true"><circle r="56" fill="none" stroke="var(--sakura)" stroke-opacity=".35" stroke-dasharray="2 4"/><g class="core" id="bloomCore"><use href="#flB" transform="scale(4.6)"/></g></svg>
+      <p class="sos-word" id="sosWord">들이쉬기</p><p class="sos-clock num" id="sosClock"></p>
+      <div class="group-title">기다리는 동안 읽어 보세요</div>
+      <div class="group">${SOS.ctx.map(id=>tipRow(TIPS[id-1])).join('')}</div>
+      <button class="btn btn-soft" id="sosStop" style="margin-top:16px">그만하기</button>`;
+    $('#sosStop').onclick=()=>{sosStop();SOS.phase='intro';renderSos()};
+    sosClock();breathe('in');
+  }else{
+    b.innerHTML=`<h1 class="sos-title">잘 버텼어요</h1><p class="sos-lead">지금은 먹고 싶은 마음이 어때요?</p>
+      <div id="sosAsk" style="margin-top:20px"><button class="btn btn-primary" data-res="passed">줄어들었어요</button>
+      <button class="btn btn-soft" data-res="ate" style="margin-top:8px">그래도 먹을래요</button></div>
+      <div id="sosNote" hidden><div class="insight"><div>괜찮아요. 접시에 한 번만 덜어서, 앉아서 천천히 드세요. 한 번 먹었다고 무너지지 않아요. 다음 끼니부터 평소대로 하면 돼요.</div></div>
+      <button class="btn btn-soft" data-tab="home" style="margin-top:12px">홈으로</button></div>`;
+    b.querySelectorAll('[data-res]').forEach(x=>x.onclick=()=>{
+      S.urges.unshift({ts:Date.now(),halt:SOS.halt,min:SOS.min,result:x.dataset.res});S.urges=S.urges.slice(0,300);save();
+      SOS.phase='intro';
+      if(x.dataset.res==='passed'){updateBadges();toast('충동 하나를 넘겼어요');tab='stats';render();setTimeout(()=>{const u=$('#urgeStats');u&&u.scrollIntoView({behavior:RM?'auto':'smooth'})},50)}
+      else{$('#sosAsk').hidden=true;$('#sosNote').hidden=false;updateBadges()}
+    });
+  }
+}
+function sosStart(){
+  SOS.phase='run';SOS.endAt=Date.now()+SOS.min*6e4;
+  clearInterval(SOS.tick);SOS.tick=setInterval(sosClock,1000);renderSos();
+}
+function sosStop(){clearInterval(SOS.tick);clearTimeout(SOS.bt);SOS.tick=null}
+function sosClock(){
+  const left=Math.max(0,Math.round((SOS.endAt-Date.now())/1000));
+  const el=$('#sosClock');if(el)el.textContent=`${Math.floor(left/60)}:${pad(left%60)} 남음`;
+  if(left<=0&&SOS.phase==='run'){sosStop();SOS.phase='done';if(navigator.vibrate)try{navigator.vibrate(200)}catch(e){}
+    if(tab==='sos')renderSos();else toast('타이머가 끝났어요. 충동 넘기기를 열어 결과를 남겨 주세요')}
+}
+function breathe(ph){
+  clearTimeout(SOS.bt);
+  const core=$('#bloomCore'),word=$('#sosWord');if(!core||SOS.phase!=='run')return;
+  const P_={in:['들이쉬기',4000,'hold',1],hold:['잠깐 멈추기',4000,'out',1],out:['천천히 내쉬기',6000,'in',.55]}[ph];
+  word.textContent=P_[0];
+  core.style.transitionDuration=ph==='hold'?'0s':P_[1]+'ms';
+  core.style.transform=`scale(${P_[3]})`;
+  SOS.bt=setTimeout(()=>breathe(P_[2]),P_[1]);
+}
+
+/* 통계 탭: 충동 기록 */
+function renderUrgeStats(){
+  const el=$('#urgeStats');if(!el)return;
+  const u=S.urges,passed=u.filter(x=>x.result==='passed').length;
+  const wk=u.filter(x=>Date.now()-x.ts<7*864e5&&x.result==='passed').length;
+  const water7=(()=>{let s=0,n=0;for(let i=0;i<7;i++){const k=addDays(todayStr(),-i);if(S.water[k]!=null){s+=S.water[k];n++}}return n?s/n:null})();
+  el.innerHTML=`<div class="group-title">충동 넘기기와 물</div>
+    <div class="group">
+      <div class="row"><span class="lbl">넘긴 충동</span><span class="val"><b class="num">${passed}</b>번</span></div>
+      <div class="row"><span class="lbl">최근 7일</span><span class="val"><b class="num">${wk}</b>번</span></div>
+      <div class="row"><span class="lbl">하루 평균 물 (7일)</span><span class="val">${water7==null?'기록 없음':`<b class="num">${water7.toFixed(1)}</b>잔`}</span></div>
+    </div>
+    ${u.length?`<div class="group-title">최근 충동 기록</div><div class="group">${u.slice(0,10).map(x=>{const d=new Date(x.ts);return `<div class="row"><span class="lbl">${d.getMonth()+1}월 ${d.getDate()}일 ${d.getHours()<12?'오전':'오후'} ${d.getHours()%12||12}:${pad(d.getMinutes())}${x.halt?`<span class="sub">${HALT[x.halt][0]}</span>`:''}</span><span class="urge-badge ${x.result==='passed'?'good':''}">${x.result==='passed'?'넘겼어요':'먹었어요'}</span></div>`}).join('')}</div>`:`<p class="fine">먹고 싶은 마음이 들 때 팁 탭의 충동 넘기기를 써 보세요. 결과가 여기에 쌓여요.</p>`}`;
+}
+
 render();
 fetchWx();
+{const m=/^#tip-(\d+)$/.exec(location.hash);if(m&&S)openTip(+m[1],[+m[1]])}
 </script>
 </body>
 </html>
