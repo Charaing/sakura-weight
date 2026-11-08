@@ -285,11 +285,20 @@ button{cursor:pointer;background:none;border:0;padding:0}
 .sos-page{min-height:100vh;background:linear-gradient(var(--sakura-wash),var(--bg) 360px)}
 .sos-title{font-size:26px;font-weight:750;letter-spacing:-.035em;margin:4px 0 6px;line-height:1.3;word-break:keep-all}
 .sos-lead{color:var(--ink-2);margin:0 0 4px;word-break:keep-all}
-.halt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.halt-grid button{background:var(--surface);border-radius:var(--r-md);padding:14px;text-align:left;box-shadow:inset 0 0 0 1.5px transparent}
-.halt-grid button.on{box-shadow:inset 0 0 0 2px var(--sakura-deep)}
-.halt-grid b{display:block;font-size:15px;font-weight:650}
-.halt-grid small{display:block;color:var(--ink-2);font-size:12.5px;margin-top:2px;line-height:1.35}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.cat-grid[hidden],#tipEmpty[hidden]{display:none}
+.cat-tile{aspect-ratio:1;background:var(--surface);border-radius:var(--r-md);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:6px 4px;text-align:center;box-shadow:inset 0 0 0 1.5px transparent}
+.cat-tile:active{background:var(--fill)}
+.cat-tile .e{font-size:27px;line-height:1}
+.cat-tile .n{font-size:12px;line-height:1.25;font-weight:600;word-break:keep-all}
+.cat-tile .c{font-size:11px;color:var(--ink-3)}
+.cat-tile.on{box-shadow:inset 0 0 0 2px var(--sakura-deep);background:var(--sakura-wash)}
+.cat-head{display:flex;align-items:center;gap:10px;margin-top:16px}
+.cat-head .round-btn{flex:none}
+.cat-head b{font-size:19px;font-weight:700;letter-spacing:-.03em}
+.cat-head small{display:block;font-size:12.5px;color:var(--ink-2)}
+.halt-pick{margin-top:10px;padding:12px 14px;border-radius:var(--r-md);background:var(--surface);font-size:14px;color:var(--ink-2);min-height:46px}
+.halt-pick b{color:var(--ink)}
 .bloom{display:block;width:240px;height:240px;margin:6px auto 0}
 .bloom .core{transform-box:fill-box;transform-origin:center;transform:scale(.55);transition-property:transform;transition-timing-function:ease-in-out}
 .sos-word{text-align:center;font-size:22px;font-weight:700;letter-spacing:-.03em;margin:4px 0 0}
@@ -412,7 +421,8 @@ button{cursor:pointer;background:none;border:0;padding:0}
       <div class="segmented" id="tipSeg" style="margin-top:10px">
         <button data-s="all" class="on">전체</button><button data-s="fav">저장함</button><button data-s="tried">해본 것</button>
       </div>
-      <div class="tchips" id="tipChips"></div>
+      <div id="tipCatHead"></div>
+      <div class="cat-grid" id="tipCats"></div>
       <div class="group-title" id="tipCount"></div>
       <div class="group" id="tipList"></div>
       <div class="empty" id="tipEmpty" hidden></div>
@@ -1477,20 +1487,23 @@ function tipFiltered(){
 function renderTips(){
   if($('#tipQ').value!==tipQ)$('#tipQ').value=tipQ;
   $('#tipSeg').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.s===tipSeg));
-  $('#tipChips').innerHTML=`<button class="chip ${tipCat==='all'?'on':''}" data-tc="all">전체</button>`+TCATS.map(c=>`<button class="chip ${tipCat===c.id?'on':''}" data-tc="${c.id}">${c.emoji} ${esc(c.name)}</button>`).join('');
-  const on=$('#tipChips .on');if(on&&on.dataset.tc!=='all')on.scrollIntoView({inline:'center',block:'nearest'});
   const passed=S.urges.filter(u=>u.result==='passed').length;
   $('#sosHeroSub').textContent=passed?`지금까지 충동을 ${passed}번 넘겼어요`:'숨을 고르며 충동이 지나가길 같이 기다려요';
-  const list=tipFiltered();tipCtx=list.map(x=>x.id);
-  $('#tipCount').textContent=`${list.length}개의 상황`;
+  const grid=tipSeg==='all'&&!tipQ&&tipCat==='all';
+  $('#tipCats').hidden=!grid;
+  if(grid)$('#tipCats').innerHTML=TCATS.map(c=>`<button class="cat-tile" data-tc="${c.id}"><span class="e">${c.emoji}</span><span class="n">${esc(c.name)}</span><span class="c num">${TIPS.filter(t=>t.cat===c.id).length}개</span></button>`).join('');
+  const c=TCAT[tipCat];
+  $('#tipCatHead').innerHTML=c?`<div class="cat-head"><button class="round-btn" data-tc="all" aria-label="모든 분야 보기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg></button><span><b>${c.emoji} ${esc(c.name)}</b><small>모든 분야로 돌아가려면 왼쪽 버튼을 누르세요</small></span></div>`:'';
+  const list=grid?[]:tipFiltered();tipCtx=list.map(x=>x.id);
+  $('#tipCount').textContent=grid?'':`${list.length}개의 상황`;
   $('#tipList').innerHTML=list.map(tipRow).join('');
   $('#tipList').hidden=!list.length;
-  const em=$('#tipEmpty');em.hidden=!!list.length;
+  const em=$('#tipEmpty');em.hidden=grid||!!list.length;
   em.innerHTML=tipSeg==='fav'?'아직 저장한 팁이 없어요.<br>팁을 열고 저장을 누르면 여기에 모여요.':tipSeg==='tried'?'아직 해본 방법이 없어요.<br>팁 속 해결법 옆 동그라미를 눌러 보세요.':`“${esc(tipQ)}”에 맞는 상황이 없어요.<br>배고픔, 술, 운동처럼 짧게 찾아보세요.`;
 }
 $('#tipQ').addEventListener('input',e=>{tipQ=e.target.value.trim();renderTips()});
 $('#tipSeg').onclick=e=>{const b=e.target.closest('button');if(!b)return;tipSeg=b.dataset.s;renderTips()};
-$('#tipChips').onclick=e=>{const b=e.target.closest('[data-tc]');if(!b)return;tipCat=b.dataset.tc;renderTips()};
+$('#v-tips').addEventListener('click',e=>{const b=e.target.closest('[data-tc]');if(!b)return;tipCat=b.dataset.tc;renderTips();window.scrollTo(0,0)});
 
 function openTip(id,ctx){
   const it=TIPS[id-1];if(!it)return;
@@ -1557,13 +1570,35 @@ document.addEventListener('click',e=>{
 });
 
 /* 충동 넘기기 */
-const HALT={H:['배고파요','마지막 식사가 3시간도 넘었어요','배고'],A:['스트레스 받아요','화나거나 불안해요','스트레스'],L:['외롭거나 심심해요','할 일이 없거나 허전해요','외로'],T:['피곤해요','잠이 부족하거나 지쳤어요','피곤']};
+// [이름, 설명, 이모지, 제목에서 찾을 말들, 함께 볼 분야]  — H·A·L·T 키는 예전 기록과 호환
+const HALT={
+  H:['배고파요','마지막 식사가 3시간도 넘었어요','🍚',['배가 고파','배고파','허기'],'hungry'],
+  N:['밤이 늦었어요','자기 전인데 자꾸 먹고 싶어요','🌙',['밤','야식','자기 전'],'night'],
+  S:['단 게 당겨요','초콜릿, 빵, 디저트 생각이 나요','🍫',['단 게','단 것','단 음식','초콜릿','설탕','아이스크림','빵'],'crave'],
+  K:['짠 게 당겨요','라면, 과자, 치킨이 생각나요','🍜',['라면','짠','치킨','과자'],'crave'],
+  A:['스트레스 받아요','일이나 사람 때문에 지쳤어요','🤯',['스트레스'],'fake'],
+  R:['화가 나요','속에서 열이 올라요','😤',['화가 나','화나'],'fake'],
+  X:['불안해요','마음이 초조하고 조급해요','😰',['불안'],'fake'],
+  D:['우울해요','기분이 가라앉고 처져요','🌧️',['우울할','우울해','자괴감'],'fake'],
+  L:['외로워요','허전하고 누가 그리워요','🫂',['외로'],'fake'],
+  B:['심심해요','할 일이 없고 입이 심심해요','🥱',['지루','심심'],'fake'],
+  T:['피곤해요','잠이 부족하거나 지쳤어요','😴',['피곤','번아웃','잠을 못','수면이'],'sleep'],
+  G:['보상받고 싶어요','오늘 고생했으니 먹어도 될 것 같아요','🎁',['보상'],'fake'],
+  E:['음식을 봤어요','냄새, 먹방, 남이 먹는 걸 봤어요','👀',['냄새','남이 먹','SNS','배달앱','유혹'],'fake'],
+  F:['먹었는데 또 먹고 싶어요','배는 부른데 손이 가요','🍽️',['식사 직후','먹어도','배부','계속'],'hungry'],
+  W:['술을 마셨어요','술자리 중이거나 끝난 뒤예요','🍺',['술','안주','해장'],'social'],
+  P:['생리 전이에요','식욕이 평소보다 커졌어요','🌸',['생리 전','생리 중'],'woman'],
+};
 const SOS={phase:'intro',halt:null,min:10,endAt:0,tick:null,bt:null,ctx:[]};
 function sosTipIds(){
-  const q=SOS.halt?tnorm(HALT[SOS.halt][2]):null;
-  let pool=q?TIPS.filter(it=>tnorm(it.t).includes(q)):[];
-  if(pool.length<3)pool=pool.concat(TIPS.filter(it=>(it.cat==='fake'||it.cat==='crave')&&!pool.includes(it)));
-  return pool.slice(0,3).map(x=>x.id);
+  const h=SOS.halt&&HALT[SOS.halt];let pool=[];
+  if(h){
+    const qs=h[3].map(tnorm);
+    pool=TIPS.filter(it=>qs.some(q=>tnorm(it.t).includes(q)));
+    pool=pool.concat(TIPS.filter(it=>it.cat===h[4]&&!pool.includes(it)));
+  }
+  pool=pool.concat(TIPS.filter(it=>(it.cat==='fake'||it.cat==='crave')&&!pool.includes(it)));
+  return pool.slice(0,4).map(x=>x.id);
 }
 function renderSos(){
   const b=$('#sosBody');
@@ -1571,7 +1606,8 @@ function renderSos(){
     b.innerHTML=`<h1 class="sos-title">먹고 싶은 마음,<br>잠깐만 같이 지켜봐요</h1>
       <p class="sos-lead">먹고 싶은 충동은 대부분 몇 분 안에 가장 세졌다가 줄어들어요. 지금 어떤 상태인지 골라 주세요.</p>
       <div class="group-title">지금 나는</div>
-      <div class="halt-grid">${Object.entries(HALT).map(([k,v])=>`<button data-halt="${k}" class="${SOS.halt===k?'on':''}" aria-pressed="${SOS.halt===k}"><b>${v[0]}</b><small>${v[1]}</small></button>`).join('')}</div>
+      <div class="cat-grid" style="margin-top:0">${Object.entries(HALT).map(([k,v])=>`<button data-halt="${k}" class="cat-tile ${SOS.halt===k?'on':''}" aria-pressed="${SOS.halt===k}"><span class="e">${v[2]}</span><span class="n">${v[0]}</span></button>`).join('')}</div>
+      <div class="halt-pick">${SOS.halt?`<b>${HALT[SOS.halt][0]}</b> ${HALT[SOS.halt][1]}. 이 상황에 맞는 팁을 타이머와 함께 보여 드려요.`:'지금 상태를 고르면 그 상황에 맞는 팁을 함께 보여 드려요. 고르지 않아도 시작할 수 있어요.'}</div>
       <div class="group-title">타이머</div>
       <div class="segmented" id="sosLen">${[3,10,20].map(m=>`<button data-m="${m}" class="${SOS.min===m?'on':''}">${m}분</button>`).join('')}</div>
       <button class="btn btn-primary" id="sosStart" style="margin-top:20px">타이머 시작하기</button>`;
