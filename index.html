@@ -285,12 +285,12 @@ button{cursor:pointer;background:none;border:0;padding:0}
 .sos-page{min-height:100vh;background:linear-gradient(var(--sakura-wash),var(--bg) 360px)}
 .sos-title{font-size:26px;font-weight:750;letter-spacing:-.035em;margin:4px 0 6px;line-height:1.3;word-break:keep-all}
 .sos-lead{color:var(--ink-2);margin:0 0 4px;word-break:keep-all}
-.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.cat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:14px;width:100%}
 .cat-grid[hidden],#tipEmpty[hidden]{display:none}
-.cat-tile{aspect-ratio:1;background:var(--surface);border-radius:var(--r-md);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:6px 4px;text-align:center;box-shadow:inset 0 0 0 1.5px transparent}
+.cat-tile{aspect-ratio:1;min-width:0;overflow:hidden;background:var(--surface);border-radius:var(--r-md);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:6px 4px;text-align:center;box-shadow:inset 0 0 0 1.5px transparent}
 .cat-tile:active{background:var(--fill)}
 .cat-tile .e{font-size:27px;line-height:1}
-.cat-tile .n{font-size:12px;line-height:1.25;font-weight:600;word-break:keep-all}
+.cat-tile .n{font-size:12px;line-height:1.25;font-weight:600;word-break:keep-all;overflow-wrap:anywhere;max-width:100%}
 .cat-tile .c{font-size:11px;color:var(--ink-3)}
 .cat-tile.on{box-shadow:inset 0 0 0 2px var(--sakura-deep);background:var(--sakura-wash)}
 .cat-head{display:flex;align-items:center;gap:10px;margin-top:16px}
